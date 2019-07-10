@@ -3,6 +3,7 @@ project(moveit_task_constructor_core)
 
 find_package(Boost REQUIRED)
 find_package(catkin REQUIRED COMPONENTS
+	roslint
 	eigen_conversions
 	geometry_msgs
 	moveit_core
@@ -13,6 +14,8 @@ find_package(catkin REQUIRED COMPONENTS
 	visualization_msgs
 	rviz_marker_tools
 )
+
+catkin_python_setup()
 
 catkin_package(
 	LIBRARIES
@@ -33,9 +36,10 @@ else ()
 	set(CMAKE_CXX_STANDARD 14)
 endif ()
 
-set(PROJECT_INCLUDE ${CMAKE_CURRENT_SOURCE_DIR}/include/moveit/task_constructor)
+set(PROJECT_INCLUDE ${PROJECT_SOURCE_DIR}/include/moveit/task_constructor)
 
 add_subdirectory(src)
+add_subdirectory(python)
 add_subdirectory(test)
 
 install(DIRECTORY include/ DESTINATION ${CATKIN_GLOBAL_INCLUDE_DESTINATION})
